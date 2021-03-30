@@ -16,7 +16,8 @@
 #==============================================================================#
 using Dash, DashHtmlComponents, DashCoreComponents
 using PlotlyJS, DelimitedFiles
-using Plots, HTTP
+using Plots
+# using Genie, Genie.Router
 
 #------------------------------------------------------------------------------
 #  read in data
@@ -62,9 +63,4 @@ callback!(app, Output("power", "figure"), Input("input-1", "value")) do value
                )
 end
 
-# run_server(app, "0.0.0.0", debug=true)
-handler = make_handler(app)
-println("started at localhost:8080")
-# HTTP.serve(handler, HTTP.Sockets.localhost, 8080)
-# Use this for heroku to host
-HTTP.serve(handler, "0.0.0.0", parse(Int,ARGS[1]))
+run_server(app, "0.0.0.0", parse(Int,ARGS[1]), debug=true)
