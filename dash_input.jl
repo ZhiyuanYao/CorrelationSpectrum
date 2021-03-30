@@ -63,4 +63,5 @@ callback!(app, Output("power", "figure"), Input("input-1", "value")) do value
                )
 end
 
-run_server(app, "0.0.0.0", parse(Int,ARGS[1]), debug=true)
+port = parse(Int64, ENV["PORT"]);
+run_server(app, "0.0.0.0", port)
